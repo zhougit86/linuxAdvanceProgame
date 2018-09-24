@@ -48,7 +48,9 @@ int main(){
     if ( (pid = fork() ) ==0){
         cout << "i am p" <<endl;
     }else{
-        printf("i am c, the pid is %d",pid);
+        printf("i am c, the pid is %d\n",pid);
+        char* argv[] = {"ls","-al",(char*)0};
+        execv("ls",argv);
     }
 
     return 0;
