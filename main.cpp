@@ -51,7 +51,7 @@ int main(){
         int status;
         waitpid(pid,&status,0);
         cout << status <<endl;
-        cout << "i am p "<< getpgrd() <<endl;
+        cout << "i am p "<< getpgrp() <<endl;
     }else{
         printf("i am c, the pid is %d\n",pid);
         // char argv[][] = {"ls", "-al", "/etc/passwd", (char*) 0};
