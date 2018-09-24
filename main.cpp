@@ -75,6 +75,8 @@ int main(){
 
     signal(SIGUSR1,sig_user);
     signal(SIGUSR2,sig_user);
+    for (;;)
+        pause();
 
 
     return 0;
