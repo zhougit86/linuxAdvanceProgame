@@ -10,12 +10,12 @@ using namespace std;
 
 int main(){
 
-    cout << "hello world " <<endl;
-    write(STDOUT_FILENO,"hello\n",6);
-    int fd = open("test.txt",O_RDWR|O_CREAT);
-    write(fd,"abcdefg\n",8);
-    write(fd,"abcedfg\n",8);
-    close(fd);
+    // cout << "hello world " <<endl;
+    // write(STDOUT_FILENO,"hello\n",6);
+    // int fd = open("test.txt",O_RDWR|O_CREAT);
+    // write(fd,"abcdefg\n",8);
+    // write(fd,"abcedfg\n",8);
+    // close(fd);
 
 
     // fd = open("test.txt",O_RDONLY);
@@ -43,6 +43,12 @@ int main(){
     // for (i=0;i<10;i++){
     //     cout << *p++ << endl;
     // }
+    pid_t pid;
+    if ((pid = fork()) ==0){
+        cout << "i am p" <<endl;
+    }else{
+        printf("i am c, the pid is %d",pid);
+    }
 
     return 0;
 }
