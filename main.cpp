@@ -45,8 +45,13 @@ int main(){
     //     cout << *p++ << endl;
     // }
     pid_t pid;
-    if ( (pid = fork() ) ==0){
+    if ( (pid = fork() ) !=0){
         cout << "i am p" <<endl;
+        int status;
+        if (wait(&status) !=pid){
+            exit(7);
+        }
+        cout << status <<endl;
     }else{
         printf("i am c, the pid is %d\n",pid);
         // char argv[][] = {"ls", "-al", "/etc/passwd", (char*) 0};
