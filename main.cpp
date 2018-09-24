@@ -49,8 +49,8 @@ int main(){
         cout << "i am p" <<endl;
     }else{
         printf("i am c, the pid is %d\n",pid);
-        char * argv[] = {"ls", "-al", "/etc/passwd", (char*)};
-        execv("/bin/ls", argv);
+        // char argv[][] = {"ls", "-al", "/etc/passwd", (char*) 0};
+        execl("/bin/ls", "-ls","/etc",(char *)0);
     }
 
     return 0;
