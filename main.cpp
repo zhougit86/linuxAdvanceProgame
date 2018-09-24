@@ -3,6 +3,7 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <stdio.h>
+#include <unistd.h>
 
 // #define PrintDecimal(x) printf(#x" = %d\n",x)
 
@@ -44,7 +45,7 @@ int main(){
     //     cout << *p++ << endl;
     // }
     pid_t pid;
-    if ((pid = fork()) ==0){
+    if ( (pid = fork() ) ==0){
         cout << "i am p" <<endl;
     }else{
         printf("i am c, the pid is %d",pid);
