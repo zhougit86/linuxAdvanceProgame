@@ -2,6 +2,7 @@
 #include <string>
 #include <fcntl.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <stdio.h>
 #include <unistd.h>
 
