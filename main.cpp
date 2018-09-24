@@ -3,12 +3,23 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <signal.h>
 #include <stdio.h>
 #include <unistd.h>
 
 // #define PrintDecimal(x) printf(#x" = %d\n",x)
 
 using namespace std;
+
+static void 
+sig_user(int signo){
+    if (signo == SIGUSR1){
+        cout << "user1" <<endl;
+    }else{
+        cout << "user2" << endl;
+    }
+    return;
+}
 
 int main(){
 
@@ -45,18 +56,26 @@ int main(){
     // for (i=0;i<10;i++){
     //     cout << *p++ << endl;
     // }
-    pid_t pid;
-    if ( (pid = fork() ) !=0){
+
+
+
+
+    // pid_t pid;
+    // if ( (pid = fork() ) !=0){
         
-        int status;
-        waitpid(pid,&status,0);
-        cout << status <<endl;
-        cout << "i am p "<< getpgrp() <<endl;
-    }else{
-        printf("i am c, the pid is %d\n",pid);
-        // char argv[][] = {"ls", "-al", "/etc/passwd", (char*) 0};
-        execl("/bin/ls", "-ls","/etc",(char *)0);
-    }
+    //     int status;
+    //     waitpid(pid,&status,0);
+    //     cout << status <<endl;
+    //     cout << "i am p "<< getpgrp() <<endl;
+    // }else{
+    //     printf("i am c, the pid is %d\n",pid);
+    //     // char argv[][] = {"ls", "-al", "/etc/passwd", (char*) 0};
+    //     execl("/bin/ls", "-ls","/etc",(char *)0);
+    // }
+
+    signal(SIGUSR1,sig_user);
+    signal(SIGUSR2,sig_user);
+
 
     return 0;
 }
