@@ -21,6 +21,14 @@ sig_user(int signo){
     return;
 }
 
+static void 
+sig_alarm(int signo){
+    if (signo == SIGALRM){
+        cout << "got a timeout alarm" <<endl;
+    }
+    return;
+}
+
 int main(){
 
     // cout << "hello world " <<endl;
@@ -75,6 +83,9 @@ int main(){
 
     signal(SIGUSR1,sig_user);
     signal(SIGUSR2,sig_user);
+    signal(SIGALRM,sig_alarm);
+    alarm(1);
+    
     for (;;)
         pause();
 
