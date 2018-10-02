@@ -8,6 +8,7 @@
 #include <unistd.h>
 
 using namespace std;
+char buf[100000];
 
 void set_fl(int fd,int flags){
     int val;
