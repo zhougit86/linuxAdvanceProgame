@@ -5,6 +5,7 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <stdio.h>
+#include <errno.h>
 #include <unistd.h>
 
 using namespace std;
@@ -51,6 +52,7 @@ main(void){
         }
     }
     clr_fl(STDOUT_FILENO,O_NONBLOCK);
-    exit(0);
+
+    return 0;
 
 }
