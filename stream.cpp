@@ -7,8 +7,9 @@
 #include <stdio.h>
 #include <errno.h>
 #include <unistd.h>
-#include <sys/conf.h>
+// #include <sys/conf.h>
 #include <stropts.h>
+#include <stdlib.h>
 
 using namespace std;
 int main(int argc,char *argv[]){
@@ -19,7 +20,7 @@ int main(int argc,char *argv[]){
     nmods = ioctl(fd, I_LIST, (void *)0);
     cout << "# of modules:" << nmods << endl;
 
-    list.sl_modlist = calloc(nmods,sizeof(struct str_mlist));
+    list.sl_modlist = (str_mlist*)calloc(nmods,sizeof(struct str_mlist));
     list.sl_nmods = nmods;
 
     for (i = 1; i <= nmods ; i++){
