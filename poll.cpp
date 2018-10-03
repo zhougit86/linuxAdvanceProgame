@@ -50,7 +50,7 @@ int main(int argc,char *argv[]){
     tval.tv_sec = 0;  
     tval.tv_usec = 0;
 
-    select(4, &rset, NULL, NULL, &tval);
+    select(4, &rset, NULL, NULL, NULL);
 
     cout << "got a signal" <<endl;
 }
