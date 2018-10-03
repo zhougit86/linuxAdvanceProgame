@@ -57,7 +57,7 @@ int main(int argc,char *argv[]){
         }
         if (FD_ISSET(STDOUT_FILENO,&rset)){
             read(STDIN_FILENO,buf,sizeof(buf));
-            cout << buf << endls;
+            cout << buf << endl;
         }
     }
     
