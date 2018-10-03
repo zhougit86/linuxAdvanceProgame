@@ -43,14 +43,22 @@ int main(int argc,char *argv[]){
 
     set_fl(STDOUT_FILENO,O_NONBLOCK);
 
-    FD_ZERO(&rset);  
-    FD_SET(STDOUT_FILENO, &rset);
+    while (true){
+        FD_ZERO(&rset);  
+        FD_SET(STDOUT_FILENO, &rset);
 
-    struct timeval tval;
-    tval.tv_sec = 0;  
-    tval.tv_usec = 0;
+        struct timeval tval;
+        tval.tv_sec = 0;  
+        tval.tv_usec = 0;
 
-    select(4, &rset, NULL, NULL, NULL);
-
-    cout << "got a signal" <<endl;
+        int selResult = select(FD_SETSIZE, &rset, NULL, NULL, NULL);
+        if (selResult >=  0){
+            cout << "got a signal"<< selResult <<endl;
+        }
+        if (FD_ISSET(STDOUT_FILENO,&rset)){
+            read(STDIN_FILENO,buf,sizeof(buf));
+            cout << buf << endls;
+        }
+    }
+    
 }
