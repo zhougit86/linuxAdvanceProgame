@@ -16,7 +16,7 @@ int main(int argc,char *argv[]){
     int fd,i,nmods;
     struct str_list list;
 
-    fd = open(argv[i],O_RDONLY);
+    fd = open(argv[1],O_RDONLY);
     nmods = ioctl(fd, I_LIST, (void *)0);
     cout << "# of modules:" << nmods << endl;
 
