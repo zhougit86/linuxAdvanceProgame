@@ -1,6 +1,7 @@
 #include <sys/types.h>
 #include <dirent.h>
 #include <iostream>
+#include <errno.h>
 
 using namespace std;
 
