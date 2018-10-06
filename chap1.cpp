@@ -12,7 +12,7 @@ int main(int argc, char *argv[]){
         cout << "can not open" <<endl;
     }
     while ((dirp = readdir(dp))!=NULL){
-        cout << dirp->d_name;
+        cout << dirp->d_name<<endl;;
     }
     closedir(dp);
     return 0;
