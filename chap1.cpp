@@ -9,7 +9,8 @@ int main(int argc, char *argv[]){
     dirent *dirp;
 
     if ((dp = opendir(argv[1])) == NULL){
-        cout << "can not open" <<endl;
+        extern int errno;
+        cout << "can not open\t" << errno<<endl;
     }
     while ((dirp = readdir(dp))!=NULL){
         cout << dirp->d_name<<endl;;
