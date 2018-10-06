@@ -15,5 +15,5 @@ int main(int argc, char *argv[]){
         cout << dirp->d_name;
     }
     closedir(dp);
-    exit(0);
+    return 0;
 }
