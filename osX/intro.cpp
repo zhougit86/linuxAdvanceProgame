@@ -13,7 +13,7 @@ int main(int argc, char* argv[]){
     //     cout <<str<<endl;
     // }
 
-    int* p = malloc(sizeof(int));
+    int* p = (int*)malloc(sizeof(int));
     printf("%p\n",p);
 
     return 0;
