@@ -20,8 +20,8 @@ int main(int argc, char *argv[]){
     cout <<"main: begin" <<endl;
 
 
-    rc = pthread_create(&p1,NULL,mythread,"A");
-    rc = pthread_create(&p2,NULL,mythread,"B");
+    rc = pthread_create(&p1,NULL,mythread,(void *)"A");
+    rc = pthread_create(&p2,NULL,mythread,(void *)"B");
 
     rc=pthread_join(p1,NULL);
     rc=pthread_join(p2,NULL);
