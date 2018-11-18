@@ -17,7 +17,7 @@ void *mythread(void *arg){
     *(int *)arg = a;
 
     // cout << (char *)arg <<endl;
-    // return NULL;
+    return NULL;
 }
 
 int main(int argc, char *argv[]){
