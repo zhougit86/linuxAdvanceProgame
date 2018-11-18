@@ -8,13 +8,13 @@
 using namespace std;
 
 void *mythread(void *arg){
-    int a = 0;
+    int aa = 0;
     for(int i=0;i<5000;i++){
-        a+=1;
+        aa+=1;
     }
-    cout<< a<<endl;
+    cout<< aa<<endl;
 
-    *(int *)arg = a;
+    *(int *)arg = aa;
 
     // cout << (char *)arg <<endl;
     return NULL;
