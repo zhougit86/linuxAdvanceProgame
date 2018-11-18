@@ -26,14 +26,15 @@ int main(int argc, char *argv[]){
     int rc;
 
     cout <<"main: begin" <<endl;
-    int *a,*b;
+    int a,b;
 
-    rc = pthread_create(&p1,NULL,mythread,(void *)a);
-    rc = pthread_create(&p2,NULL,mythread,(void *)b);
+    rc = pthread_create(&p1,NULL,mythread,(void *)&a);
+    rc = pthread_create(&p2,NULL,mythread,(void *)&b);
 
     rc=pthread_join(p1,NULL);
     rc=pthread_join(p2,NULL);
-    cout<<*a<<*b<<endl;
+    cout<<b<<endl;
     cout <<"main: end"<<endl;
+    cout<<a<<endl;
     return 0;
 }
