@@ -4,12 +4,19 @@
 #include <sys/time.h>
 #include <unistd.h>
 #include <pthread.h>
+#include "t_util.h"
 
 using namespace std;
+
+int static volatile globalNumber = 0;
+pthread_mutex_t static lock;
 
 void *mythread(void *arg){
     int aa = 0;
     for(int i=0;i<5000;i++){
+        Pthread_mutex_lock(&lock);
+        globalNumber++;
+        Pthread_mutex_unlock(&lock);
         aa+=1;
     }
     cout<< aa<<endl;
@@ -24,6 +31,7 @@ int main(int argc, char *argv[]){
     pthread_t p1,p2;
 
     int rc;
+    pthread_mutex_init(&lock,NULL);
 
     cout <<"main: begin" <<endl;
     int a,b;
@@ -36,5 +44,6 @@ int main(int argc, char *argv[]){
     cout<<b<<endl;
     cout <<"main: end"<<endl;
     cout<<a<<endl;
+    cout<<globalNumber<<endl;
     return 0;
 }
