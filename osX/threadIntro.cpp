@@ -19,7 +19,7 @@ void *mythread(void *arg){
         Pthread_mutex_unlock(&lock);
         aa+=1;
     }
-    cout<< aa<<endl;
+    // cout<< aa<<endl;
 
     *(int *)arg = aa;
 
@@ -41,9 +41,9 @@ int main(int argc, char *argv[]){
 
     rc=pthread_join(p1,NULL);
     rc=pthread_join(p2,NULL);
-    cout<<b<<endl;
+    cout<<"b:"<<b<<endl;
     cout <<"main: end"<<endl;
-    cout<<a<<endl;
+    cout<<"a:"<<a<<endl;
     cout<<globalNumber<<endl;
     return 0;
 }
