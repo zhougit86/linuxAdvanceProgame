@@ -11,7 +11,10 @@ using namespace std;
 
 int main(int argc , char* argv[]){
     cout << "hello" <<endl;
-    cout << gethostname() <<endl;
+
+    char* hostname;
+
+    cout << gethostname(hostname,100) <<endl;
 
     
 }
