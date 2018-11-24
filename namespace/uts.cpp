@@ -11,7 +11,7 @@
 using namespace std;
 
 static int child_func(void *hostname){
-    sethostname(hostname,strlen(hostname));
+    sethostname((char *)hostname,strlen((char *)hostname));
      //用一个新的bash来替换掉当前子进程，
     //执行完execlp后，子进程没有退出，也没有创建新的进程,
     //只是当前子进程不再运行自己的代码，而是去执行bash的代码,
@@ -24,6 +24,8 @@ static int child_func(void *hostname){
     return 0;
 
 }
+
+static char child_stack[1024*1024]; //设置子进程的栈空间为1M
 
 int main(int argc , char* argv[]){
     pid_t child_pid;
