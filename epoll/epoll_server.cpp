@@ -9,6 +9,8 @@
 
 #include <iostream>
 
+#define MAX_EVENT_NUM           1024
+
 using namespace std;
 
 void addfd(int epollfd, int fd, int enable_et)
@@ -58,6 +60,7 @@ int main(int argc, char* argv[]){
     cout<<"haha"<<endl;
     cout<<argv[1]<<endl;
     cout<<argv[2]<<endl;
+    struct epoll_event events[MAX_EVENT_NUM];
     
     int listenfd = start_ser(argv[1], argv[2]);
     int epollfd = epoll_create(5);
@@ -68,7 +71,20 @@ int main(int argc, char* argv[]){
 
     addfd(epollfd, listenfd, true);
 
+    while(1){
+        int ret = epoll_wait(epollfd, events, MAX_EVENT_NUM, -1);
+        cout<<"received"<<endl;
+        // if(ret < 0){
+        //     printf("epoll failure\n");
+        //     break;
+        // }
 
-    
+        // lt(events, ret, epollfd, listenfd);//lt模式
+                //et(events, ret, epollfd, listenfd);//et模式
+    }
+    close(listenfd);
+
+
+
     return 0;
 }
