@@ -34,7 +34,7 @@ void addfd(int epollfd, int fd, int enable_et)
 int start_ser(char *ipaddr, char *port)
 {
     //sock_stream代表是tcp，SOCK_DGRAM代表是udp
-        int sock = Socket(AF_INET, SOCK_DGRAM, 0);
+        int sock = socket(AF_INET, SOCK_DGRAM, 0);
 
         struct sockaddr_in serveraddr;
         bzero(&serveraddr, sizeof(serveraddr));
@@ -42,11 +42,11 @@ int start_ser(char *ipaddr, char *port)
         serveraddr.sin_port = htons(atoi(port));
         inet_pton(AF_INET, ipaddr, &serveraddr.sin_addr);
 
-        Bind(sock, (struct sockaddr *)&serveraddr, sizeof(serveraddr));
+        bind(sock, (struct sockaddr *)&serveraddr, sizeof(serveraddr));
 
 
         //128最大能处理的连接数，来自socket.h
-        Listen(sock, 128);
+        listen(sock, 128);
 
         return sock;
 }
