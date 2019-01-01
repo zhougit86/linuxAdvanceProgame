@@ -2,6 +2,7 @@
 
 #include <netinet/in.h>
 #include <sys/socket.h>
+#include <sys/types.h>
 #include <arpa/inet.h>
 #include <stdlib.h
 
@@ -37,6 +38,7 @@ int start_ser(char *ipaddr, char *port)
         int sock = socket(AF_INET, SOCK_DGRAM, 0);
 
         struct sockaddr_in serveraddr;
+        //从sys/type而来的
         bzero(&serveraddr, sizeof(serveraddr));
         serveraddr.sin_family = AF_INET;
         serveraddr.sin_port = htons(atoi(port));
