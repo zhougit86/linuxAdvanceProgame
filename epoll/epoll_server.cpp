@@ -5,6 +5,7 @@
 #include <string.h>
 #include <arpa/inet.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 
 #include <iostream>
@@ -82,6 +83,8 @@ int main(int argc, char* argv[]){
         // lt(events, ret, epollfd, listenfd);//lt模式
                 //et(events, ret, epollfd, listenfd);//et模式
     }
+
+    //从unistd导入，关闭fd
     close(listenfd);
 
 
