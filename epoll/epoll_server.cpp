@@ -65,5 +65,10 @@ int main(int argc, char* argv[]){
     if(epollfd < 0){
         return 1;
     }
+
+    addfd(epollfd, listenfd, true);
+
+
+    
     return 0;
 }
