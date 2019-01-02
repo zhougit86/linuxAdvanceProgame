@@ -71,10 +71,12 @@ void et(struct epoll_event *event, int num, int epollfd, int listenfd)
             int connfd = accept(listenfd, (struct sockaddr *)&clientaddr, (socklen_t *)&clilen);
             
             cout << "accept complete:"  <<endl;
-            printf("%d\n",event[i].events & EPOLLIN);
+            // printf("%d\n",event[i].events & EPOLLIN);
             
             // addfd(epollfd, connfd, true);//多connfd开启ET模式
-        }else if(event[i].events & EPOLLIN){
+        }
+        
+        if(event[i].events & EPOLLIN){
             printf("event trigger once\n");
             while(1){//这段代码不会重复触发，所以要循环读取数据
                 memset(buf, '\0', BUFFER_SIZE);
