@@ -73,7 +73,7 @@ void et(struct epoll_event *event, int num, int epollfd, int listenfd)
             cout << "accept complete:"  <<endl;
             // printf("%d\n",event[i].events & EPOLLIN);
             
-            // addfd(epollfd, connfd, true);//多connfd开启ET模式
+            addfd(epollfd, connfd, true);//多connfd开启ET模式
         }
         
         if(event[i].events & EPOLLIN){
