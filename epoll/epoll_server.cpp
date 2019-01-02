@@ -14,7 +14,7 @@
 
 #define MAX_EVENT_NUM           1024
 
-#define BUFFER_SIZE             10
+#define BUFFER_SIZE             100
 
 using namespace std;
 
