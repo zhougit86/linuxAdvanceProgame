@@ -4,6 +4,7 @@
 #include <sys/socket.h>
 #include <string.h>
 #include <stdio.h>
+#include <errno.h>
 #include <arpa/inet.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -75,6 +76,7 @@ void et(struct epoll_event *event, int num, int epollfd, int listenfd)
                                 memset(buf, '\0', BUFFER_SIZE);
                                 int ret = recv(sockfd, buf, BUFFER_SIZE-1, 0);
                                 if(ret < 0){
+                                    //errno.h当中的常量
                                         if((errno == EAGAIN) || (errno == EWOULDBLOCK)){
                                                 printf("read later\n");
                                                 break;
