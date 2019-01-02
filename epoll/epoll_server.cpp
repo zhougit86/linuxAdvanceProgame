@@ -62,38 +62,40 @@ int start_ser(char *ipaddr, char *port)
 
 void et(struct epoll_event *event, int num, int epollfd, int listenfd)
 {
-        char buf[BUFFER_SIZE];
-        for(int i = 0; i < num; i++){
-                int sockfd = event[i].data.fd;
-                if(sockfd == listenfd){
-                        struct sockaddr_in clientaddr;
-                        int clilen = sizeof(clientaddr);
-                        int connfd = accept(listenfd, (struct sockaddr *)&clientaddr, (socklen_t *)&clilen);
-                        addfd(epollfd, connfd, true);//多connfd开启ET模式
-                }else if(event[i].events & EPOLLIN){
-                        printf("event trigger once\n");
-                        while(1){//这段代码不会重复触发，所以要循环读取数据
-                                memset(buf, '\0', BUFFER_SIZE);
-                                int ret = recv(sockfd, buf, BUFFER_SIZE-1, 0);
-                                if(ret < 0){
+    char buf[BUFFER_SIZE];
+    for(int i = 0; i < num; i++){
+        int sockfd = event[i].data.fd;
+        if(sockfd == listenfd){
+            struct sockaddr_in clientaddr;
+            int clilen = sizeof(clientaddr);
+            int connfd = accept(listenfd, (struct sockaddr *)&clientaddr, (socklen_t *)&clilen);
+            
+            cout << "accept complete"  <<endl;
+            addfd(epollfd, connfd, true);//多connfd开启ET模式
+        }else if(event[i].events & EPOLLIN){
+            printf("event trigger once\n");
+            while(1){//这段代码不会重复触发，所以要循环读取数据
+                memset(buf, '\0', BUFFER_SIZE);
+                int ret = recv(sockfd, buf, BUFFER_SIZE-1, 0);
+                if(ret < 0){
                                     //errno.h当中的常量
-                                        if((errno == EAGAIN) || (errno == EWOULDBLOCK)){
-                                                printf("read later\n");
-                                                break;
-                                        }
-                                        close(sockfd);
-                                        break;
-                                }else if(ret == 0){
-                                        close(sockfd);
-                                }else{
-                                        printf("get %d bytes of content:%s\n", ret, buf);
-                                }
-                        }
+                    if((errno == EAGAIN) || (errno == EWOULDBLOCK)){
+                        printf("read later\n");
+                        break;
+                    }
+                    close(sockfd);
+                    break;
+                }else if(ret == 0){
+                    close(sockfd);
                 }else{
-
-                        printf("something else happened \n");
+                    printf("get %d bytes of content:%s\n", ret, buf);
                 }
+            }
+        }else{
+
+            printf("something else happened \n");
         }
+    }
 }
 
 
@@ -114,6 +116,7 @@ int main(int argc, char* argv[]){
 
     while(1){
         //ret代表收到了多少个请求
+        //,timeout是超时事件，-1为阻塞，0为立即返回，非阻塞，大于0是指定的微妙
         int ret = epoll_wait(epollfd, events, MAX_EVENT_NUM, -1);
         cout<<"received"<<endl;
         if(ret < 0){
