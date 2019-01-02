@@ -81,7 +81,7 @@ void et(struct epoll_event *event, int num, int epollfd, int listenfd)
                                                 printf("read later\n");
                                                 break;
                                         }
-                                        Close(sockfd);
+                                        close(sockfd);
                                         break;
                                 }else if(ret == 0){
                                         close(sockfd);
