@@ -3,7 +3,7 @@
 // 打开的option
 #include <sys/types.h>
 // 读写权限
-#include <sys/stats.h>
+#include <sys/stat.h>
 
 
 int main(int argc , char* argv[]){
