@@ -4,7 +4,8 @@
 #include <sys/types.h>
 // 读写权限
 #include <sys/stat.h>
-
+// 关闭文件
+#include <unistd.h>
 
 int main(int argc , char* argv[]){
 
