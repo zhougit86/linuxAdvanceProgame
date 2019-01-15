@@ -6,6 +6,7 @@
 #include <sys/stat.h>
 // 关闭文件,lseek都在这个库当中
 #include <unistd.h>
+//操作fcntl的状态
 
 int main(int argc , char* argv[]){
 
@@ -30,6 +31,10 @@ int main(int argc , char* argv[]){
 
     printf("size: %d\n",st.st_size);
     printf("user: %d\n",st.st_uid);
+
+    printf("file state: %d\n",fcntl(fd,F_GETFL));
+
+
     close(fd);
 
     
