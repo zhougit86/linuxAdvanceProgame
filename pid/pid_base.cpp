@@ -7,7 +7,10 @@
 
 int main(int argc , char* argv[]){
     printf("my pid %d\n",getpid());
-    printf("my ppid %d\n",getppid());
+    // printf("my ppid %d\n",getppid());
+
+    char *args[] = {"/bin/ls",NULL};
+    execve("/bin/ls",args,NULL);
 
     return 0;
 }
