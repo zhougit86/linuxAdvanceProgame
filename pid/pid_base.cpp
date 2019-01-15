@@ -6,6 +6,8 @@
 #include <unistd.h>
 
 int main(int argc , char* argv[]){
+    
+    printf("got input %s\n",argv[1]);
     printf("my pid %d\n",getpid());
     // printf("my ppid %d\n",getppid());
 
