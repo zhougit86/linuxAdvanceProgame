@@ -9,7 +9,7 @@ int main(int argc , char* argv[]){
 
     int fd[2],nbytes;
     pid_t pid;
-    char string[] = "你好通道";
+    char string[] = "thank god";
     char readbuffer[80];
 
     int *write_fd = &fd[1];
@@ -23,10 +23,14 @@ int main(int argc , char* argv[]){
         close(*read_fd);
         result = write(*write_fd,string,strlen(string));
 
+        printf("child send bytes: %d\n",result);
+
         return 0;
     }else{
         close(*write_fd);
         nbytes = read(*read_fd,readbuffer,sizeof(readbuffer));
+
+        printf("parent got bytes: %d\n",nbytes);
 
         printf("got date : %s\n",readbuffer);
     }
