@@ -19,7 +19,7 @@ int main(int argc , char* argv[]){
 
     pid = fork();
 
-    if ( 0 == fd ){
+    if ( 0 == pid ){
         close(*read_fd);
         result = write(*write_fd,string,strlen(string));
 
