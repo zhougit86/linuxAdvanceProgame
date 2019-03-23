@@ -9,7 +9,7 @@ int main(int argc , char* argv[]){
 
     int fd[2],nbytes;
     pid_t pid;
-    char string[] = "thank god";
+    const char string[] = "thank god";
     char readbuffer[80];
 
     int *write_fd = &fd[1];

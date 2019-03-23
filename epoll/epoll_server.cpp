@@ -47,8 +47,11 @@ int start_ser(char *ipaddr, char *port)
         struct sockaddr_in serveraddr;
         //从string而来的
         bzero(&serveraddr, sizeof(serveraddr));
+        //说明是IPV4协议
         serveraddr.sin_family = AF_INET;
+        //指定端口，htons是将int转为网络字节序
         serveraddr.sin_port = htons(atoi(port));
+        //设置ip地址
         inet_pton(AF_INET, ipaddr, &serveraddr.sin_addr);
 
         bind(sock, (struct sockaddr *)&serveraddr, sizeof(serveraddr));
