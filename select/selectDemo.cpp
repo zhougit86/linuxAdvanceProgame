@@ -11,6 +11,9 @@ int main(int argc, char* argv[]){
     struct timeval tv;
     int err;
 
+    char sBuf[50];
+    
+
     FD_ZERO(&rd);
     FD_SET(0, & rd);
 
@@ -19,7 +22,14 @@ int main(int argc, char* argv[]){
 
     err = select(1, &rd,NULL,NULL,&tv);
 
-    cout << "got nothing" <<endl;
+    if(err){
+        int iCount=read(STDIN_FILENO, sBuf, 50);
+        cout << sBuf << endl;
+    }else{
+        cout << "got nothing" <<endl;
+    }
+    
+    
 
     return 0;
 }
