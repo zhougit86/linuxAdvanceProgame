@@ -11,6 +11,7 @@
 int main(int argc , char* argv[]){
 
     mode_t f_attrib;
+    //用户的读写权限
     f_attrib = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;  
     int fd = open("./haha",O_RDWR | O_CREAT | O_TRUNC, f_attrib );
 
