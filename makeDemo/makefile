@@ -7,4 +7,5 @@ sub.o:sub/sub.cpp sub/sub.h
 main.o:main.cpp add/add.h sub/sub.h
 	g++ -c -o main.o main.cpp -Iadd -Isub
 
-clean: rm -rf add/add.o sub/sub.o main.o cacu
+clean: 
+	rm -rf add/add.o sub/sub.o main.o cacu
