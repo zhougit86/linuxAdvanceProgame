@@ -5,4 +5,4 @@ add.o:add/add.cpp add/add.h
 sub.o:sub/sub.cpp sub/sub.h
 	g++ -c -o sub/sub.o sub/sub.cpp
 main.o:main.cpp add/add.h sub/sub.h
-	g++ -c -o main.o main.cpp -Iadd -Isub
+	g++ -c -o main.o main.cpp -I add/ sub/
